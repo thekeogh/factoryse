@@ -46,6 +46,21 @@ const user = new Factory<User>({
 
 > The specification of the type `<User>` during Factory initialisation is entirely optional.
 
+### `spawn(count: number, data: (faker: Faker) => T)`
+
+To create multiple `Factory` instances simultaneously, you can utilise the `spawn` helper method, which generates an array of `Factory` instances:
+
+```typescript
+import { spawn } from "factoryse";
+
+// Spawn an array of 5 Factory instances
+const users: Factory<User>[] = spawn(5, faker => ({
+  name: faker.person.fullName(),
+}));
+```
+
+When initialising your objects, you have the flexibility to use the [Faker](https://github.com/faker-js/faker) closure to easily generate random data. However, if you prefer, you can provide static strings or values instead of random data.
+
 ### `add(key: string, value: any)`
 
 This method adds a new key-value pair to the object. You have the flexibility to use dot notation for nesting keys within your schema:
