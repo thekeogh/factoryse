@@ -1,0 +1,63 @@
+{
+  "name": "factoryse",
+  "description": "TypeScript-based test factory library that simplifies the creation of test data for your Node.js applications.",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
+  "author": {
+    "name": "Steve McKeogh",
+    "email": "steve.mckeogh@gmail.com",
+    "url": "https://mckeogh.uk"
+  },
+  "engines": {
+    "node": "^18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thekeogh/factoryse.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thekeogh/factoryse/issues"
+  },
+  "homepage": "https://github.com/thekeogh/factoryse#readme",
+  "scripts": {
+    "build": "rimraf ./dist && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "lint": "npm run eslint && npm run prettier",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "prettier": "prettier . --check",
+    "prettier:fix": "prettier . --write",
+    "eslint": "eslint --ext=ts src tests --no-error-on-unmatched-pattern --quiet || true",
+    "eslint:fix": "eslint --ext=ts src tests --no-error-on-unmatched-pattern --quiet --fix || true"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.1.0",
+    "deepmerge": "^4.3.1",
+    "lodash.get": "^4.4.2",
+    "lodash.has": "^4.5.2",
+    "lodash.set": "^4.3.2",
+    "lodash.unset": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/lodash.get": "^4.4.7",
+    "@types/lodash.has": "^4.5.7",
+    "@types/lodash.set": "^4.3.7",
+    "@types/lodash.unset": "^4.5.7",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "eslint": "^8.51.0",
+    "eslint-plugin-import": "^2.28.1",
+    "prettier": "^3.0.3",
+    "rimraf": "^5.0.5",
+    "tsc-alias": "^1.8.8",
+    "typescript": "^5.2.2",
+    "vite-tsconfig-paths": "^4.2.1",
+    "vitest": "^0.34.6"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "module": "CommonJS",
+    "target": "ES5",
+    "lib": ["ESNext"],
+    "moduleResolution": "Node",
+    "strict": true,
+    "declaration": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "*.d.ts"
+    ],
+    "paths": {
+      "@utils": ["src/utils/index.ts"],
+      "@src/*": ["src/*"],
+    }
+  },
+  "include": ["src", "tests", "types.d.ts"]
+}
