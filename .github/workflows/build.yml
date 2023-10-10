@@ -1,0 +1,68 @@
+name: build
+
+on:
+  push:
+    branches:
+      - "**"
+    tags-ignore:
+      - v*.*.* # skip semantic-release tags
+  pull_request:
+
+env:
+  NODE_VERSION: "18.18"
+
+jobs:
+  lint: 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup node ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        registry-url: "https://registry.npmjs.org"
+    - run: npm ci
+    - run: npm run lint  
+
+  test: 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup node ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        registry-url: "https://registry.npmjs.org"
+    - run: npm ci
+    - run: npm test   
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup node ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: "https://registry.npmjs.org"
+      - run: npm ci
+      - run: npm run build  
+  
+  semantic-release:
+    runs-on: ubuntu-latest
+    needs: [build, test, lint]
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/pre' || github.ref == 'refs/heads/main')
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup node ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: "https://registry.npmjs.org"
+      - run: npm ci
+      - run: npm run build
+      - name: semantic-release
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npx -p "@semantic-release/exec" semantic-release --debug
