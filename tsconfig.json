@@ -3,21 +3,22 @@
     "baseUrl": ".",
     "outDir": "dist",
     "module": "CommonJS",
-    "target": "ES5",
+    "target": "ES2015",
     "lib": ["ESNext"],
     "moduleResolution": "Node",
     "strict": true,
     "declaration": true,
     "incremental": true,
     "esModuleInterop": true,
-    "typeRoots": [
-      "node_modules/@types",
-      "*.d.ts"
-    ],
     "paths": {
-      "@utils": ["src/utils/index.ts"],
       "@src/*": ["src/*"],
+      "@tests/*": ["tests/*"],
+      "@core/*": ["src/core/*"],
+      "@factory/*": ["src/factory/*"],
+      "@utils/*": ["src/utils/*"],
+      "@types": ["src/types.ts"],
+      "@factory": ["src/factory/index.ts"]
     }
   },
-  "include": ["src", "tests", "types.d.ts"]
+  "include": ["src", "tests"]
 }

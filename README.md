@@ -1,16 +1,12 @@
 # Factoryse
 
-[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
+[![build](https://github.com/thekeogh/factoryse/actions/workflows/release.yml/badge.svg)](https://github.com/thekeogh/factoryse/actions)[![semantic-release: npm](https://img.shields.io/badge/semantic--release-npm-CB0000?logo=semantic-release)](https://github.com/semantic-release/semantic-release)[![node.js: >=16.20.2](https://img.shields.io/badge/node.js-%3E=16.20.2-036E02?logo=node.js)](https://nodejs.org) 
 
 Factoryse is a test factory library built with [TypeScript](https://www.typescriptlang.org/), designed to streamline the creation of test data for your [Node.js](https://nodejs.org/) applications. Craft and manage test objects effortlessly, optimising the efficiency of your testing workflow. This project draws inspiration from Ruby's renowned [Factory Bot](https://github.com/thoughtbot/factory_bot), bringing similar ease and consistency to the world of TypeScript and Node.js testing.
 
+Factoryse is designed to streamline the creation of test data, offering a simple and efficient approach to generate random (or deterministic, if preferred) data, thereby reducing redundancy in your testing setup.
+
 Factoryse is compatible with any modern testing suite, including [Vitest](https://vitest.dev/) and [Jest](https://jestjs.io/), without being tied to any specific one.
-
-----
-
-**Factoryse is currently in active development. Comprehensive details will be provided here in the near future.**
-
-----
 
 ## Install
 
@@ -18,156 +14,141 @@ Factoryse is compatible with any modern testing suite, including [Vitest](https:
 npm install --save-dev factoryse
 ```
 
-## Usage
+## How to use
 
-### Initialise 
+### Defining a factory
 
-To begin, initialise your factory with the initial data for your schema:
+First, define your factory structure. This involves specifying the data model and creating the factory instance.
 
 ```typescript
-import { Factory } from "factoryse";
-
+// Define the User shape
 interface User {
-  name: string;
-  tags: string[];
-  address: {
-    line1: string;
-  }
-};
+  email: string;
+  createdAt?: Date;
+}
 
-const user = new Factory<User>({
-  name: "Jon Jones",
-  tags: ["male", "manager"],
-  address: {
-    line1: "66 Richmond Road",
-  },
-});
-```
-
-> The specification of the type `<User>` during Factory initialisation is entirely optional.
-
-### `spawn(count: number, data: (faker: Faker) => T)`
-
-To create multiple `Factory` instances simultaneously, you can utilise the `spawn` helper method, which generates an array of `Factory` instances:
-
-```typescript
-import { spawn } from "factoryse";
-
-// Spawn an array of 5 Factory instances
-const users: Factory<User>[] = spawn(5, faker => ({
-  name: faker.person.fullName(),
+// Create the user factory
+const user = new Factory<User>(faker => ({
+  email: faker.internet.email()
 }));
 ```
 
-When initialising your objects, you have the flexibility to use the [Faker](https://github.com/faker-js/faker) closure to easily generate random data. However, if you prefer, you can provide static strings or values instead of random data.
+> It's recommended to use [faker](https://fakerjs.dev/) during factory instantiation for generating diverse random data.
 
-### `add(key: string, value: any)`
+### Generating entries
 
-This method adds a new key-value pair to the object. You have the flexibility to use dot notation for nesting keys within your schema:
-
-```typescript
-// Adding a top-level key
-factory.add("foo", "bar");
-
-// Adding a nested key
-factory.add("foo.bar", "baz")
-```
-
-For the sake of maintaining test stability, Factoryse will raise an error if the specified key already exists within the schema. To update existing values in your schema, it's advisable to use the `modify()` or `assign()` methods.
-
-> Please note that Factoryse doesn't strictly adhere to the specified interface (e.g., `User`) and allows the addition of keys and values with any name and type to the object. This flexibility enables you to test scenarios with incorrect value types and additional keys that aren't defined in the interface.
-
-### `modify(key: string, value: any)`
-
-This method modifies a value in the object. You have the flexibility to use dot notation for modifying nested keys within your schema:
+Generate a single entry:
 
 ```typescript
-// Modify a top-level key
-factory.modify("foo", "bar");
-
-// Modifying a nested key
-factory.modify("foo.bar", "baz")
+const factory = user.make();
+// Generates: [{ email: "Jo65@gmail.com" }]
 ```
 
-For the sake of maintaining test stability, Factoryse will raise an error if the specified key does not exist within the schema. To add new values to your schema, it's advisable to use the `add()` or `assign()` methods.
-
-> It's important to be aware that Factoryse doesn't strictly adhere to the specified interface (e.g., `User`) and provides flexibility in modifying values of different types than what the interface demands. This flexibility allows you to conduct tests involving scenarios with incorrect value types and the addition of keys that aren't originally defined in the interface.
-
-### `remove(key: string)`
-
-This method removes key-value pairs from the object. You have the flexibility to use dot notation for removing nested keys within your schema:
+To generate multiple entries:
 
 ```typescript
-// Remove a top-level key
-factory.remove("foo");
-
-// Removing a nested key
-factory.remove("foo.bar")
+const factory = user.make(2);
+// Generates: [{ email: "Jo65@gmail.com" }, { email: "Alv38@hotmail.com" }]
 ```
 
-For the sake of maintaining test stability, Factoryse will raise an error if the specified key does not exist within the schema.
+### Retrieving entries
 
-### `assign(source: Record<string, any>, mergeArrays: boolean = false)`
-
-This method facilitates the merging of the source schema with your object, with the source schema taking precedence over the target object.
+Leverage the `get()` action to access entries created by your Factory. Factoryse offers a variety of query methods to facilitate this retrieval process.
 
 ```typescript
-// Merge a source object into your target
-factory.assign({
-  age: 42,
-  tags: ["boss"],
-  address: {
-    line1: "23 Derton Road, London",
-    country: "GB"
-  }
-});
+// Retrieve all entries
+users.get().all(); // User[]
+
+// Retrieve the first entry or the first (`n: number`) entries
+users.get().first(); // User[]
+users.get().first(n); // User[]
+
+// Retrieve the last entry or the last (`n: number`) entries
+users.get().last(); // User[]
+users.get().last(n); // User[]
+
+// Retrieve a random entry or multiple random (`n: number`) entries
+users.get().any(); // User[]
+users.get().any(n); // User[]
+
+// Retrieve a single entry by its index (`n: number`)
+users.get().at(n); // User
+
+// Retrieve multiple entries by their index (`n: number[]`)
+users.get().pick(n); // User[]
+
+// Retrieve multiple entries between indexes (`start: number, end: number`)
+users.get().between(start, end); // User[]
+
+// Retrieve multiple entries by criteria (`c: Partial<User>`)
+users.get().by(c); // User[]
 ```
 
-When `mergeArrays` is set to `false` (the default), arrays will not be merged; instead, the source array will overwrite the target array. In this case, the result would be:
+### Editing entries
 
-```json
-{
-  "name": "Jon Jones",
-  "age": 42,
-  "tags": ["boss"],
-  "address": {
-    "line1": "23 Derton Road, London",
-    "country": "GB"
-  },
-}
-```
-
-If `mergeArrays` was set to `true`, the result would be:
-
-```json
-{
-  "name": "Jon Jones",
-  "age": 42,
-  "tags": ["male", "manager", "boss"],
-  "address": {
-    "line1": "23 Derton Road, London",
-    "country": "GB"
-  },
-}
-```
-
-> It's worth noting that Factoryse offers flexibility by not strictly adhering to the specified interface (e.g., `User`). This flexibility allows you to test scenarios with different value types and the addition of keys not originally defined in the interface.
-
-### `reset()`
-
-This method restores the target object to its initial state as defined during instantiation. Be cautious as this action permanently erases any changes made to the object since its creation.
+Leverage the `set(source)` action to edit entries in your Factory. Factoryse offers a variety of query methods to facilitate this editing process.
 
 ```typescript
-// Reset the target back to its original state
-factory.reset();
+// Closure to apply modifications to entries
+const source = faker => ({ createdAt: faker.date.recent() })
+
+// Update all entries
+users.set(source).all(); // User[]
+
+// Update the first entry or the first (`n: number`) entries
+users.set(source).first(); // User[]
+users.set(source).first(n); // User[]
+
+// Update the last entry or the last (`n: number`) entries
+users.set(source).last(); // User[]
+users.set(source).last(n); // User[]
+
+// Update a random entry or multiple random (`n: number`) entries
+users.set(source).any(); // User[]
+users.set(source).any(n); // User[]
+
+// Update a single entry by its index (`n: number`)
+users.set(source).at(n); // User
+
+// Update multiple entries by their index (`n: number[]`)
+users.set(source).pick(n); // User[]
+
+// Update multiple entries between indexes (`start: number, end: number`)
+users.set(source).between(start, end); // User[]
+
+// Update multiple entries by criteria (`c: Partial<User>`)
+users.set(source).by(c); // User[]
 ```
 
-### `get()`
+### Deleting entries
 
-This method provides you with the resulting schema object after all modifications have been applied.
+Leverage the `delete()` action to delete entries from your Factory. Factoryse offers a variety of query methods to facilitate this deleting process.
 
 ```typescript
-// Retrieve the current schema
-factory.get()
-```
+// Delete all entries
+users.delete().all(); // User[]
 
+// Delete the first entry or the first (`n: number`) entries
+users.delete().first(); // User[]
+users.delete().first(n); // User[]
+
+// Delete the last entry or the last (`n: number`) entries
+users.delete().last(); // User[]
+users.delete().last(n); // User[]
+
+// Delete a random entry or multiple random (`n: number`) entries
+users.delete().any(); // User[]
+users.delete().any(n); // User[]
+
+// Delete a single entry by its index (`n: number`)
+users.delete().at(n); // User
+
+// Delete multiple entries by their index (`n: number[]`)
+users.delete().pick(n); // User[]
+
+// Delete multiple entries between indexes (`start: number, end: number`)
+users.delete().between(start, end); // User[]
+
+// Delete multiple entries by criteria (`c: Partial<User>`)
+users.delete().by(c); // User[]
+```

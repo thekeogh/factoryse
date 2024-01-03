@@ -22,7 +22,8 @@
     }],
     "sort-imports": ["error", {
       "ignoreDeclarationSort": true,
-      "allowSeparatedGroups": true
+      "allowSeparatedGroups": true,
+      "ignoreMemberSort": false
     }],
     "@typescript-eslint/no-unused-vars": ["warn"],
     "@typescript-eslint/no-explicit-any": "off",
@@ -33,12 +34,39 @@
           "group": "unknown",
           "position": "before"
         },
+        {
+          "pattern": "@types",
+          "group": "unknown",
+          "position": "before"
+        },
+        {
+          "pattern": "@core/**",
+          "group": "unknown",
+          "position": "before"
+        },
         // ----
         {
-          "pattern": "@utils",
+          "pattern": "@utils/**",
+          "group": "unknown"
+        },
+        // ----
+        {
+          "pattern": "@factory",
           "group": "unknown",
           "position": "after"
+        },
+        // ----
+        {
+          "pattern": "@factory/**",
+          "group": "internal"
+        },
+        // ----
+        {
+          "pattern": "@tests/**",
+          "group": "internal",
+          "position": "after"
         }
+        // ----
       ],
       "pathGroupsExcludedImportTypes": ["builtin"],
       "groups": [
@@ -61,9 +89,7 @@
     "files": ["tests/**"],
     "rules": {
       "@typescript-eslint/no-unused-vars": "off",
-      "@typescript-eslint/ban-ts-comment": ["error", {
-        "ts-ignore": "allow-with-description"
-      }]
+      "@typescript-eslint/ban-ts-comment": "off"
     }
   }]
 }

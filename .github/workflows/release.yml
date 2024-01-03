@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: "18.18"
+  NODE_VERSION: "16.20.2"
 
 jobs:
   lint: 
