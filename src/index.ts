@@ -1,2 +1,2 @@
-export * from "@src/Factory";
-export * from "@src/spawn";
+export { Factory } from "@factory";
+export * from "@types";

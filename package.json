@@ -1,6 +1,15 @@
 {
   "name": "factoryse",
+  "type": "module",
   "description": "TypeScript-based test factory library that simplifies the creation of test data for your Node.js applications.",
+  "keywords": [
+    "testing",
+    "factory",
+    "typescript",
+    "dummy",
+    "faker",
+    "nodejs"
+  ],
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,13 +18,13 @@
     "package.json",
     "README.md"
   ],
+  "engines": {
+    "node": ">=16.20.2"
+  },
   "author": {
     "name": "Steve McKeogh",
     "email": "steve.mckeogh@gmail.com",
     "url": "https://mckeogh.uk"
-  },
-  "engines": {
-    "node": "^18"
   },
   "repository": {
     "type": "git",
@@ -37,27 +46,29 @@
     "eslint:fix": "eslint --ext=ts src tests --no-error-on-unmatched-pattern --quiet --fix || true"
   },
   "dependencies": {
-    "@faker-js/faker": "^8.1.0",
+    "@faker-js/faker": "^8.3.1",
     "deepmerge": "^4.3.1",
-    "lodash.get": "^4.4.2",
-    "lodash.has": "^4.5.2",
-    "lodash.set": "^4.3.2",
-    "lodash.unset": "^4.5.2"
+    "lodash.filter": "^4.6.0",
+    "lodash.foreach": "^4.5.0",
+    "lodash.ismatch": "^4.4.0",
+    "lodash.remove": "^4.7.0"
   },
   "devDependencies": {
-    "@types/lodash.get": "^4.4.7",
-    "@types/lodash.has": "^4.5.7",
-    "@types/lodash.set": "^4.3.7",
-    "@types/lodash.unset": "^4.5.7",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
-    "@typescript-eslint/parser": "^6.7.5",
-    "eslint": "^8.51.0",
-    "eslint-plugin-import": "^2.28.1",
-    "prettier": "^3.0.3",
+    "@types/lodash.filter": "^4.6.9",
+    "@types/lodash.foreach": "^4.5.9",
+    "@types/lodash.ismatch": "^4.4.9",
+    "@types/lodash.remove": "^4.7.9",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "chalk": "^5.3.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-import": "^2.29.1",
+    "prettier": "^3.1.1",
     "rimraf": "^5.0.5",
     "tsc-alias": "^1.8.8",
-    "typescript": "^5.2.2",
-    "vite-tsconfig-paths": "^4.2.1",
-    "vitest": "^0.34.6"
+    "type-fest": "^4.9.0",
+    "typescript": "^5.3.3",
+    "vite-tsconfig-paths": "^4.2.3",
+    "vitest": "^1.1.1"
   }
 }
