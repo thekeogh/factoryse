@@ -2,7 +2,7 @@ import { Adaptable, Closure } from "@src/types.js";
 
 import { Queries } from "@factory/queries/index.js";
 
-export class Actions<T> {
+export class Actions<T = Record<string, any>> {
   /**
    * Central storage for data, inherited from the main Factory instance.
    *

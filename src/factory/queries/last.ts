@@ -3,7 +3,7 @@ import deepmerge from "deepmerge";
 
 import { Adaptable, Closure } from "@src/types.js";
 
-export class Last<T> {
+export class Last<T = Record<string, any>> {
   /**
    * Central storage for data, inherited from the main Factory instance.
    *

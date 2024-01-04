@@ -1,6 +1,6 @@
 # Factoryse
 
-[![build](https://github.com/thekeogh/factoryse/actions/workflows/release.yml/badge.svg)](https://github.com/thekeogh/factoryse/actions)[![semantic-release: npm](https://img.shields.io/badge/semantic--release-npm-CB0000?logo=semantic-release)](https://github.com/semantic-release/semantic-release)[![node.js: >=16.20.2](https://img.shields.io/badge/node.js-%3E=16.20.2-036E02?logo=node.js)](https://nodejs.org) 
+[![build](https://github.com/thekeogh/factoryse/actions/workflows/release.yml/badge.svg)](https://github.com/thekeogh/factoryse/actions) [![semantic-release: npm](https://img.shields.io/badge/semantic--release-npm-CB0000?logo=semantic-release)](https://github.com/semantic-release/semantic-release) [![node.js: >=16.20.2](https://img.shields.io/badge/node.js-%3E=16.20.2-036E02?logo=node.js)](https://nodejs.org) 
 
 Factoryse is a test factory library built with [TypeScript](https://www.typescriptlang.org/), designed to streamline the creation of test data for your [Node.js](https://nodejs.org/) applications. Craft and manage test objects effortlessly, optimising the efficiency of your testing workflow. This project draws inspiration from Ruby's renowned [Factory Bot](https://github.com/thoughtbot/factory_bot), bringing similar ease and consistency to the world of TypeScript and Node.js testing.
 
@@ -86,7 +86,7 @@ users.get().by(c); // User[]
 
 ### Editing entries
 
-Leverage the `set(source)` action to edit entries in your Factory. Factoryse offers a variety of query methods to facilitate this editing process.
+Leverage the `set(source)` action to edit entries in your Factory. Factoryse offers a variety of query methods to facilitate this editing process. Each method used for editing entries will return the modified entries. To retrieve the complete set of entries from the factory after making edits, refer to the `get()` action detailed in the [Retrieving Entries](#retrieving-entries) section.
 
 ```typescript
 // Closure to apply modifications to entries
@@ -122,7 +122,7 @@ users.set(source).by(c); // User[]
 
 ### Deleting entries
 
-Leverage the `delete()` action to delete entries from your Factory. Factoryse offers a variety of query methods to facilitate this deleting process.
+Leverage the `delete()` action to delete entries from your Factory. Factoryse offers a variety of query methods to facilitate this deleting process. Each method used for deleting entries will return the deleted entries. To retrieve the complete set of entries from the factory after making deletions, refer to the `get()` action detailed in the [Retrieving Entries](#retrieving-entries) section.
 
 ```typescript
 // Delete all entries

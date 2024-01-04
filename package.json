@@ -1,6 +1,5 @@
 {
   "name": "factoryse",
-  "type": "module",
   "description": "TypeScript-based test factory library that simplifies the creation of test data for your Node.js applications.",
   "keywords": [
     "testing",

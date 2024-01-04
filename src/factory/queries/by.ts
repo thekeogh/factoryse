@@ -7,7 +7,7 @@ import remove from "lodash.remove";
 
 import { Adaptable, Closure } from "@src/types.js";
 
-export class By<T> {
+export class By<T = Record<string, any>> {
   /**
    * Central storage for data, inherited from the main Factory instance.
    *
