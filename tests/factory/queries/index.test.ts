@@ -2,32 +2,32 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { Adaptable, Closure } from "@types";
 
-import { ERRORS } from "@core/constants.js";
+import { ERRORS } from "@core/constants";
 
 import { Factory } from "@factory";
 
-import { Actions } from "@factory/actions/index.js";
-import { All } from "@factory/queries/all.js";
-import { Any } from "@factory/queries/any.js";
-import { At } from "@factory/queries/at.js";
-import { Between } from "@factory/queries/between.js";
-import { By } from "@factory/queries/by.js";
-import { First } from "@factory/queries/first.js";
-import { Queries } from "@factory/queries/index.js";
-import { Last } from "@factory/queries/last.js";
-import { Pick } from "@factory/queries/pick.js";
+import { Actions } from "@factory/actions/index";
+import { All } from "@factory/queries/all";
+import { Any } from "@factory/queries/any";
+import { At } from "@factory/queries/at";
+import { Between } from "@factory/queries/between";
+import { By } from "@factory/queries/by";
+import { First } from "@factory/queries/first";
+import { Queries } from "@factory/queries/index";
+import { Last } from "@factory/queries/last";
+import { Pick } from "@factory/queries/pick";
 
-import { base, faker, inputs } from "@tests/helpers.vitest.js";
-import { User } from "@tests/types.vitest.js";
+import { base, faker, inputs } from "@tests/helpers.vitest";
+import { User } from "@tests/types.vitest";
 
-vi.mock("@factory/queries/all.js");
-vi.mock("@factory/queries/any.js");
-vi.mock("@factory/queries/at.js");
-vi.mock("@factory/queries/between.js");
-vi.mock("@factory/queries/by.js");
-vi.mock("@factory/queries/first.js");
-vi.mock("@factory/queries/last.js");
-vi.mock("@factory/queries/pick.js");
+vi.mock("@factory/queries/all");
+vi.mock("@factory/queries/any");
+vi.mock("@factory/queries/at");
+vi.mock("@factory/queries/between");
+vi.mock("@factory/queries/by");
+vi.mock("@factory/queries/first");
+vi.mock("@factory/queries/last");
+vi.mock("@factory/queries/pick");
 
 const mockedAll = vi.mocked(All, true);
 const mockedAny = vi.mocked(Any, true);

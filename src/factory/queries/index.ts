@@ -1,15 +1,15 @@
-import { Action, Adaptable, Closure } from "@src/types.js";
+import { Action, Adaptable, Closure } from "@types";
 
-import { ERRORS } from "@core/constants.js";
+import { ERRORS } from "@core/constants";
 
-import { All } from "@factory/queries/all.js";
-import { Any } from "@factory/queries/any.js";
-import { At } from "@factory/queries/at.js";
-import { Between } from "@factory/queries/between.js";
-import { By } from "@factory/queries/by.js";
-import { First } from "@factory/queries/first.js";
-import { Last } from "@factory/queries/last.js";
-import { Pick } from "@factory/queries/pick.js";
+import { All } from "@factory/queries/all";
+import { Any } from "@factory/queries/any";
+import { At } from "@factory/queries/at";
+import { Between } from "@factory/queries/between";
+import { By } from "@factory/queries/by";
+import { First } from "@factory/queries/first";
+import { Last } from "@factory/queries/last";
+import { Pick } from "@factory/queries/pick";
 
 export class Queries<T = Record<string, any>> {
   /**

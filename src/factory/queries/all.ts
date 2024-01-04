@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import deepmerge from "deepmerge";
 
-import { Adaptable, Closure } from "@src/types.js";
+import { Adaptable, Closure } from "@types";
 
 export class All<T = Record<string, any>> {
   /**

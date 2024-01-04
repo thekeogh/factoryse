@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 
 import { Closure } from "@types";
 
-import { User } from "@tests/types.vitest.js";
+import { User } from "@tests/types.vitest";
 
 /**
  * Exports for direct use in test suites.

@@ -4,11 +4,11 @@ import { Adaptable, Closure } from "@types";
 
 import { Factory } from "@factory";
 
-import { Actions } from "@factory/actions/index.js";
-import { At } from "@factory/queries/at.js";
+import { Actions } from "@factory/actions/index";
+import { At } from "@factory/queries/at";
 
-import { base } from "@tests/helpers.vitest.js";
-import { User } from "@tests/types.vitest.js";
+import { base } from "@tests/helpers.vitest";
+import { User } from "@tests/types.vitest";
 
 /**
  * beforeEach

@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
-import { ERRORS } from "@core/constants.js";
+import { ERRORS } from "@core/constants";
 
 import { Factory } from "@factory";
 
-import { inputs } from "@tests/helpers.vitest.js";
-import { base } from "@tests/helpers.vitest.js";
-import { User } from "@tests/types.vitest.js";
+import { inputs } from "@tests/helpers.vitest";
+import { base } from "@tests/helpers.vitest";
+import { User } from "@tests/types.vitest";
 
 /**
  * beforeEach
