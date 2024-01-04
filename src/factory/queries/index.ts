@@ -11,7 +11,7 @@ import { First } from "@factory/queries/first.js";
 import { Last } from "@factory/queries/last.js";
 import { Pick } from "@factory/queries/pick.js";
 
-export class Queries<T> {
+export class Queries<T = Record<string, any>> {
   /**
    * Central storage for data, inherited from the main Factory instance.
    *

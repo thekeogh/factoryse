@@ -1,2 +1,12 @@
+export { Actions } from "@factory/actions/index.js";
+export { All } from "@factory/queries/all.js";
+export { Any } from "@factory/queries/any.js";
+export { At } from "@factory/queries/at.js";
+export { Between } from "@factory/queries/between.js";
+export { By } from "@factory/queries/by.js";
 export { Factory } from "@factory";
+export { First } from "@factory/queries/first.js";
+export { Last } from "@factory/queries/last.js";
+export { Pick } from "@factory/queries/pick.js";
+export { Queries } from "@factory/queries/index.js";
 export * from "@types";
