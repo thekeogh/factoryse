@@ -5,7 +5,7 @@ import forEach from "lodash.foreach";
 import isMatch from "lodash.ismatch";
 import remove from "lodash.remove";
 
-import { Adaptable, Closure } from "@src/types.js";
+import { Adaptable, Closure } from "@types";
 
 export class By<T = Record<string, any>> {
   /**

@@ -2,9 +2,9 @@ import { faker } from "@faker-js/faker";
 
 import { Closure } from "@types";
 
-import { ERRORS } from "@core/constants.js";
+import { ERRORS } from "@core/constants";
 
-import { Actions } from "@factory/actions/index.js";
+import { Actions } from "@factory/actions";
 
 export class Factory<T = Record<string, any>> {
   /**

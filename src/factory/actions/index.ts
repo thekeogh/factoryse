@@ -1,6 +1,6 @@
-import { Adaptable, Closure } from "@src/types.js";
+import { Adaptable, Closure } from "@types";
 
-import { Queries } from "@factory/queries/index.js";
+import { Queries } from "@factory/queries";
 
 export class Actions<T = Record<string, any>> {
   /**
